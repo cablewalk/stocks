@@ -16,7 +16,8 @@ class Stock:
 
     def getprice(self):
         self.lastprice = self.soups.find("span", {"class": "IsqQVc NprOob XcVN5d"}).text
-        return self.lastprice
+        self.lastprice = self.lastprice.replace(',', '')
+        return float(self.lastprice)
 
     def arrayify(self):
         testarray = np.array ([[self.stockname],[self.lastprice]])
@@ -25,8 +26,9 @@ class Stock:
 
 summary = [[],[]]
 temp_array=0
+portfolio = 0
 
-stocklist = np.array((['MSFT','AAPL','CRWD','TSLA'],[1,2,1,0]))
+stocklist = np.array((['MSFT','AAPL','CRWD','XLK','LIT stock', 'PRNT stock','QQQ'],[1,2,1,2,10, 12,2]))
 
 for i in stocklist[0]:
     stock = Stock(i)
@@ -35,4 +37,12 @@ for i in stocklist[0]:
     summary = np.hstack((summary, temp_array))
 
 print(summary)
+
+ownnums = np.array(stocklist[1], dtype=float) #dtype conversion to float for array multiplication
+pricelist = np.array(summary[1], dtype=float)
+
+portfolio = np.multiply(pricelist, ownnums)   #list consisting of prices of stocks i own
+
+print(sum(portfolio))
+
 
