@@ -23,11 +23,10 @@ class Stock:
         return testarray
 
 
-
-stocklist = np.array(['MSFT','AAPL','CRWD','TSLA'])
-
 summary = [[],[]]
 temp_array=0
+
+stocklist = np.array(['MSFT','AAPL','CRWD','TSLA'])
 
 for i in stocklist:
     stock = Stock(i)
