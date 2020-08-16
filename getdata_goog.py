@@ -8,15 +8,19 @@ import numpy as np
 
 class Stock:
     def __init__(self, stockname):
-        self.stockname = stockname
+        self.stockname = stockname.split(' ',1)[0] #removes characters following a space
         header = {'user-agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.9; rv:32.0) Gecko/20100101 Firefox/32.0',}
         url = 'https://google.com/search?q=' + stockname
         r = requests.get(url, headers=header)
         self.soups = BS(r.text, features="html.parser")
 
     def getprice(self):
-        self.lastprice = self.soups.find("span", {"class": "IsqQVc NprOob XcVN5d"}).text
-        self.lastprice = self.lastprice.replace(',', '')
+        try: 
+            self.lastprice = self.soups.find("span", {"class": "IsqQVc NprOob XcVN5d"}).text
+            self.lastprice = self.lastprice.replace(',', '')
+        except AttributeError as e:
+            self.lastprice = 0
+            return self.lastprice
         return float(self.lastprice)
 
     def arrayify(self):
