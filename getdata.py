@@ -35,3 +35,5 @@ stockinput = input()
 b = Stock(stockinput)
 print(b.getprice())
 print(b.zacksrating())
+
+testlist = []
