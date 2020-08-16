@@ -1,0 +1,1 @@
+some scraping stuff to assist in my financial adventure
