@@ -26,9 +26,9 @@ class Stock:
 summary = [[],[]]
 temp_array=0
 
-stocklist = np.array(['MSFT','AAPL','CRWD','TSLA'])
+stocklist = np.array((['MSFT','AAPL','CRWD','TSLA'],[1,2,1,0]))
 
-for i in stocklist:
+for i in stocklist[0]:
     stock = Stock(i)
     stock.getprice()
     temp_array=stock.arrayify()
